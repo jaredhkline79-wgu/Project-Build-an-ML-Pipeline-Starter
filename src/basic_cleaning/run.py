@@ -53,43 +53,44 @@ if __name__ == "__main__":
   
     parser.add_argument(
         "--input_artifact", 
-        type = ## INSERT TYPE HERE: str, float or int,
-        help = ## INSERT DESCRIPTION HERE,
+        type = str,
+        help = "Name of the artifact prior to pre-processing",
         required = True
     )
 
     parser.add_argument(
         "--output_artifact", 
-        type = ## INSERT TYPE HERE: str, float or int,
-        help = ## INSERT DESCRIPTION HERE,
+        type = str,
+        help = "Name of the artifact after pre-processing",
         required = True
     )
 
     parser.add_argument(
         "--output_type", 
-        type = ## INSERT TYPE HERE: str, float or int,
-        help = ## INSERT DESCRIPTION HERE,
+        type = str,
+        help = "clean_sample",
+        #I think we're naming it this to make sure that's the type in wandb
         required = True
     )
 
     parser.add_argument(
         "--output_description", 
-        type = ## INSERT TYPE HERE: str, float or int,
-        help = ## INSERT DESCRIPTION HERE,
+        type = str,
+        help = 'Description of the pre-processed artifact',
         required = True
     )
 
     parser.add_argument(
         "--min_price", 
-        type = ## INSERT TYPE HERE: str, float or int,
-        help = ## INSERT DESCRIPTION HERE,
+        type = float,
+        help = 'Minimum rental price',
         required = True
     )
 
     parser.add_argument(
         "--max_price",
-        type = ## INSERT TYPE HERE: str, float or int,
-        help = ## INSERT DESCRIPTION HERE,
+        type = float,
+        help = 'Maximum rental price',
         required = True
     )
 
