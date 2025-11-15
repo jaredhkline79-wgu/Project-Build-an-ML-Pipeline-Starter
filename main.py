@@ -31,9 +31,7 @@ def go(config: DictConfig):
     # Steps to execute
     steps_par = config['main']['steps']
     active_steps = steps_par.split(",") if steps_par != "all" else _steps
-    #https://stackoverflow.com/questions/73007303/what-is-the-correct-way-of-accessing-hydras-current-output-directory
-    #suggested the code below would help with some hydra issues I was having
-    path = hydra.utils.get_original_cwd()
+
 
     # Move to a temporary directory
     with tempfile.TemporaryDirectory() as tmp_dir:
@@ -55,21 +53,20 @@ def go(config: DictConfig):
 
         if "basic_cleaning" in active_steps:
             _ = mlflow.run(
-                #this should correct some issues I was having with hydra if I am not mistaken
-                os.path.join(
-                    path,
-                    "src",
-                    "basic_cleaning"),
+                #another attempt at fixing the hydra error for this step per 
+                # https://stackoverflow.com/questions/73007303/what-is-the-correct-way-of-accessing-hydras-current-output-directory
+                os.path.join(hydra.utils.get_original_cwd(), "src", "basic_cleaning"),
                 "main",
                 parameters={
-                    "tmp_directory": tmp_dir,
                     "input_artifact": "sample.csv:latest",
                     "output_artifact": "clean_sample.csv",
                     "output_type": "clean_sample",
-                    "output_description": "Data with outliers and null values removed",
+                    "output_description": "Data with outliers and nulls cleaned",
                     "min_price": config['etl']['min_price'],
-                    "max_price": config['etl']['max_price']},
+                    "max_price": config['etl']['max_price']
+                },
             )
+
 
         if "data_check" in active_steps:
             ##################
