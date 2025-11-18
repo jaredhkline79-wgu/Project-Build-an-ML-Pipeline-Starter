@@ -102,8 +102,9 @@ def go(args):
         sk_pipe,
         "random_forest_dir",
         #I think this is the way to go if I understand https://mlflow.org/docs/3.0.1/model/signatures correctly
-        infer_signature(X_val, y_pred),
-        serialization_format=mlflow.sklearn.SERIALIZATION_FORMAT_PICKLE,
+        #lines below commented out for troubleshooting per Angelika
+        #infer_signature(X_val, y_pred),
+        #serialization_format=mlflow.sklearn.SERIALIZATION_FORMAT_PICKLE,
         input_example=X_val.iloc[:2]
     )
     ######################################
