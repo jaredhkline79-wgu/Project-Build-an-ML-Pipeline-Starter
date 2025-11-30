@@ -1,0 +1,8 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+[remote "origin"]
+	url = https://github.com/jaredhkline79-wgu/Project-Build-an-ML-Pipeline-Starter.git
+	fetch = +refs/*:refs/*
+	mirror = true
